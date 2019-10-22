@@ -25,29 +25,39 @@ namespace SampleCA1
             allPlayers.Add(player4);
             allPlayers.Add(player5);
 
-            //IncreasedScore based on method in Player Class
-            player1.IncreaseScore(1);
-            player2.IncreaseScore(10);
 
             //display all players with scores based on Display method in Program.cs
             Display(allPlayers);
+            Console.WriteLine();
 
-            int enteredID = 1;
-            do
-            {
-                Console.WriteLine();
+            Console.Write("Enter the player ID number you wish to update the score of or 0 to finish -->");
+            int enteredID = int.Parse(Console.ReadLine());
+    
+          while (enteredID != -0)
+	      {
+             Player selectedPlayer = allPlayers.ElementAt(enteredID-1); /*Gets allPlayers based on what order the add is in*/
+	         selectedPlayer.IncreaseScore(1); 
+             Console.WriteLine();
+
              Console.Write("Enter the player ID number you wish to update the score of or 0 to finish -->");
-             enteredID = (int.Parse(Console.ReadLine())-1);
-
-                Player selectedPlayer = allPlayers.ElementAt(enteredID);
-
-                selectedPlayer.IncreaseScore(1);
-
-                Display(allPlayers);
-
-            } while (enteredID !=-1);
+             enteredID = int.Parse(Console.ReadLine());
+                 
+         }
+            Display(allPlayers);
+            Console.WriteLine();
             
+
             
+            //sort the list
+            Console.WriteLine();
+            allPlayers.Sort();
+            Console.WriteLine();
+            allPlayers.Reverse();
+          DisplayPlayerDetails(allPlayers);
+        
+     
+             Console.WriteLine("The highest score is {0}", Player.HighScore);
+          
         }
         private static void Display(List<Player> players)
         {
@@ -62,5 +72,25 @@ namespace SampleCA1
             }
         }
 
+         
+
+        private static void DisplayPlayerDetails(List<Player> players)
+        {
+            Console.WriteLine($"{"PlayerID"}\t{"PlayerName"}\t{"PlayerScore"}");
+            foreach (Player player in players)
+                {
+                Console.WriteLine(player);
+                }
+{
+
+	}
+        }
+
+
+
+
+
+
     }
 }
+
